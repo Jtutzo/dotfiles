@@ -3,20 +3,21 @@
 set -o nounset
 set -o errexit
 
-TMP_FOLDER=$HOME/.tmp
-FOLDER=jtutzo-dotfiles
+DIR=`pwd`
+TMP=$HOME/.tmp/.dotfiles
 
-mkdir -p ${TMP_FOLDER}/${FOLDER} && cd ${TMP_FOLDER}/${FOLDER}
+mkdir -p ${TMP} && cd ${TMP}
 
 
 echo "Install packages"
 sudo pacman -Sy xorg-{server,xinit,apps} \
-	i3-graps \
+	i3 \
 	lightdm \
 	lightdm-gtk-greeter \
 	termite \
 	git \
 	feh \
+	rofi \
 	neofetch
 
 # Install yaourt
@@ -30,7 +31,7 @@ makepkg -si
 cd ..
 
 # Install polybar
-yourt -S polybar
+yaourt -S polybar
 
 # Install Nord gtk theme
 git clone https://github.com/EliverLara/Nordic.git
@@ -41,8 +42,17 @@ sudo sed -i 's|\(gtk-.*theme-name = \)\(.*\)|\1Nord|' /usr/share/gtk-3.0/setting
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sed -i 's|\(ZSH_THEME=\)\(".*"\)|\1"simple"' $HOME/.zshrc
+
 echo "Config system"
-cp -r .Xresources .vimrc .config .gitconfig $HOME
+cp -r ${DIR}/.Xresources \
+	${DIR}/.vimrc \
+	${DIR}/.config \
+	${DIR}/.gitconfig \
+	${DIR}/wallpaper \
+	$HOME
 
 echo "Config keymap"
 sudo localectl set-x11-keymap fr
@@ -52,6 +62,6 @@ sudo systemctl enable lightdm
 
 echo "Please reboot system"
 
-rm ${TMP_FOLDER}/${FOLDER}
+rm -rfv ${TMP}
 
 exit 0
