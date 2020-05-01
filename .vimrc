@@ -2,9 +2,6 @@
 call plug#begin('~/.vim/plugged')
 
 " plugin section
-"Plug 'pangloss/vim-javascript'
-"Plug 'leafgarland/typescript-vim'
-"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'

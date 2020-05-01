@@ -1,0 +1,7 @@
+configuration {
+	width: 100;
+	font: "Ubuntu 11";
+	show-icons: true;
+	hide-scrollbar: false;
+	theme: "nord";
+}
