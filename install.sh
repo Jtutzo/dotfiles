@@ -40,7 +40,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Config system"
-cp -r .Xresources .vimrc .config $HOME
+cp -r .Xresources .vimrc .config .gitconfig $HOME
 
 echo "Config keymap"
 sudo localectl set-x11-keymap fr
