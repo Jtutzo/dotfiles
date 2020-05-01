@@ -15,7 +15,9 @@ sudo pacman -Sy xorg-{server,xinit,apps} \
 	lightdm \
 	lightdm-gtk-greeter \
 	termite \
-	git
+	git \
+	feh \
+	neofetch
 
 # Install yaourt
 git clone https://aur.archlinux.org/package-query.git
