@@ -44,7 +44,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i 's|\(ZSH_THEME=\)\(".*"\)|\1"simple"' $HOME/.zshrc
+sed -i 's|\(ZSH_THEME=\)\(".*"\)|\1"simple|"' $HOME/.zshrc
 
 echo "Config system"
 cp -r ${DIR}/.Xresources \
