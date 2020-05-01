@@ -10,7 +10,7 @@ mkdir -p ${TMP} && cd ${TMP}
 
 
 echo "Install packages"
-sudo pacman -Sy xorg-{server,xinit,apps} \
+sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	i3 \
 	lightdm \
 	lightdm-gtk-greeter \
@@ -18,7 +18,8 @@ sudo pacman -Sy xorg-{server,xinit,apps} \
 	git \
 	feh \
 	rofi \
-	neofetch
+	neofetch \
+	firefox
 
 # Install yaourt
 git clone https://aur.archlinux.org/package-query.git
@@ -31,7 +32,7 @@ makepkg -si
 cd ..
 
 # Install polybar
-yaourt -S polybar
+yaourt -S --noconfirm polybar
 
 # Install Nord gtk theme
 git clone https://github.com/EliverLara/Nordic.git
@@ -43,8 +44,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i 's|\(ZSH_THEME=\)\(".*"\)|\1"simple|"' $HOME/.zshrc
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sed -i 's|\(ZSH_THEME=\)\(".*"\)|\1"simple"|' $HOME/.zshrc
 
 echo "Config system"
 cp -r ${DIR}/.Xresources \
@@ -62,6 +63,6 @@ sudo systemctl enable lightdm
 
 echo "Please reboot system"
 
-rm -rfv ${TMP}
+rm -rf ${TMP}
 
 exit 0
