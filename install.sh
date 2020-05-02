@@ -19,7 +19,9 @@ sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	feh \
 	rofi \
 	neofetch \
-	firefox
+	firefox \
+	ttf-font-awesome
+
 
 # Install yaourt
 git clone https://aur.archlinux.org/package-query.git
@@ -32,7 +34,8 @@ makepkg -si
 cd ..
 
 # Install polybar
-yaourt -S --noconfirm polybar
+yaourt -S --noconfirm polybar \
+	ttf-material-design-icons
 
 # Install Nord gtk theme
 git clone https://github.com/EliverLara/Nordic.git
