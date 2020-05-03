@@ -13,14 +13,18 @@ echo "Install packages"
 sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	i3 \
 	lightdm \
-	lightdm-gtk-greeter \
+	lightdm-pantheon-greeter \
 	termite \
 	git \
 	feh \
 	rofi \
 	neofetch \
 	firefox \
-	ttf-font-awesome
+	ttf-font-awesome \
+	volumeicon \
+	networkmanager \
+	network-manager-applet
+
 
 
 # Install yaourt
@@ -38,9 +42,9 @@ yaourt -S --noconfirm polybar \
 	ttf-material-design-icons
 
 # Install Nord gtk theme
-git clone https://github.com/EliverLara/Nordic.git
-sudo mkdir -p /usr/share/themes/Nord && sudo cp -r Nordic/gtk-3.0 /usr/share/themes/Nord
-sudo sed -i 's|\(gtk-.*theme-name = \)\(.*\)|\1Nord|' /usr/share/gtk-3.0/settings.ini
+#git clone https://github.com/EliverLara/Nordic.git
+#sudo mkdir -p /usr/share/themes/Nord && sudo cp -r Nordic/gtk-3.0 /usr/share/themes/Nord
+#sudo sed -i 's|\(gtk-.*theme-name = \)\(.*\)|\1Nord|' /usr/share/gtk-3.0/settings.ini
 
 # Install plug vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -63,6 +67,7 @@ sudo localectl set-x11-keymap fr
 
 echo "Enable lightdm service"
 sudo systemctl enable lightdm
+sudo systemctl enable NetworkManager.service
 
 echo "Please reboot system"
 
