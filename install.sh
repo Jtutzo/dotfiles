@@ -13,7 +13,7 @@ echo "Install packages"
 sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	i3 \
 	lightdm \
-	lightdm-pantheon-greeter \
+	lightdm-gtk-greeter \
 	termite \
 	git \
 	feh \
@@ -23,28 +23,29 @@ sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	ttf-font-awesome \
 	volumeicon \
 	networkmanager \
-	network-manager-applet
+	gnome-keyring \
+	network-manager-applet \
+	lxappearance \
+	qt5ct \
+	arc-gtk-theme \
+	papirus-icon-theme
 
-
+echo 'export QT_QPA_PLATFORMTHERME="qt5ct"' >> $HOME/.profile
 
 # Install yaourt
 git clone https://aur.archlinux.org/package-query.git
 cd package-query
-makepkg -si
+makepkg -si --needed --noconfirm
 cd ..
 git clone https://aur.archlinux.org/yaourt.git
 cd yaourt
-makepkg -si
+makepkg -si --needed --noconfirm
 cd ..
 
 # Install polybar
-yaourt -S --noconfirm polybar \
+yaourt -S --noconfirm --needed \
+	polybar \
 	ttf-material-design-icons
-
-# Install Nord gtk theme
-#git clone https://github.com/EliverLara/Nordic.git
-#sudo mkdir -p /usr/share/themes/Nord && sudo cp -r Nordic/gtk-3.0 /usr/share/themes/Nord
-#sudo sed -i 's|\(gtk-.*theme-name = \)\(.*\)|\1Nord|' /usr/share/gtk-3.0/settings.ini
 
 # Install plug vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -62,12 +63,14 @@ cp -r ${DIR}/.Xresources \
 	${DIR}/wallpaper \
 	$HOME
 
+sudo cp ${DIR}/.config/gtk-3.0/settings.ini /usr/share/gtk-3.0/
+
 echo "Config keymap"
 sudo localectl set-x11-keymap fr
 
 echo "Enable lightdm service"
 sudo systemctl enable lightdm
-sudo systemctl enable NetworkManager.service
+sudo systemctl enable NetworkManager
 
 echo "Please reboot system"
 
