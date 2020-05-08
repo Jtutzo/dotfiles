@@ -22,13 +22,17 @@ sudo pacman -Sy --noconfirm xorg-{server,xinit,apps} \
 	firefox \
 	ttf-font-awesome \
 	volumeicon \
+	pulseaudio \
+	alsa-tools \
 	networkmanager \
 	gnome-keyring \
 	network-manager-applet \
+	xfce-power-manager \
 	lxappearance \
 	qt5ct \
 	arc-gtk-theme \
-	papirus-icon-theme
+	papirus-icon-theme \
+	compton
 
 echo 'export QT_QPA_PLATFORMTHERME="qt5ct"' >> $HOME/.profile
 
@@ -62,8 +66,6 @@ cp -r ${DIR}/.Xresources \
 	${DIR}/.gitconfig \
 	${DIR}/wallpaper \
 	$HOME
-
-sudo cp ${DIR}/.config/gtk-3.0/settings.ini /usr/share/gtk-3.0/
 
 echo "Config keymap"
 sudo localectl set-x11-keymap fr
